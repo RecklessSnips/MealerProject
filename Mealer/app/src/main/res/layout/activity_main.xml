@@ -6,34 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/Header"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/mealer"
-            android:textSize="32sp" />
+        <Button
+            android:id="@+id/next1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/choose_a_user_type"
-            android:textSize="22sp" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/UserTypes"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:contentDescription="@string/usertypes"
-            android:spinnerMode="dropdown"
-            android:text="@string/options" />
+            <TextView
+                android:id="@+id/Header"
+                android:background="#DDED553B"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="@string/mealer"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/choose_a_user_type"
+                android:textSize="22sp" />
+
+            <Spinner
+                android:id="@+id/UserTypes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:contentDescription="@string/usertypes"
+                android:hint="@string/users"
+                android:spinnerMode="dropdown"
+                android:text="@string/options"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 
-    </LinearLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

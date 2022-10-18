@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Mealer"
         tools:targetApi="31">
         <activity
+            android:name=".cookRegister"
+            android:exported="false"
+            android:label="@string/title_activity_cook_register"
+            android:theme="@style/Theme.Mealer.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".clientRegister"
+            android:exported="false"
+            android:label="@string/title_activity_client_register"
+            android:theme="@style/Theme.Mealer.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
