@@ -1,6 +1,7 @@
 package com.example.mealer;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -8,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.navigation.NavController;
@@ -39,6 +41,14 @@ public class WelcomMenu extends AppCompatActivity {
         else if (type==0){
             message.setText("Welcome! You are logged in as Cook");
         }
+        Button logoff=findViewById(R.id.logOff);
+        logoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(), LogIn.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
