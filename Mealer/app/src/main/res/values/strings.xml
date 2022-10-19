@@ -35,4 +35,8 @@
     <string name="title_activity_cook_register">cookRegister</string>
     <string name="cook_registration">Cook Registration</string>
     <string name="user_description">User description</string>
+    <string name="title_activity_welcom_menu">WelcomMenu</string>
+    <string name="log_off">Log Off</string>
+    <string name="title_activity_log_in">LogIn</string>
+
 </resources>

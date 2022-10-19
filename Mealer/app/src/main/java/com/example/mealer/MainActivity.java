@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 String user = userTypes.getSelectedItem().toString();
                 if (user.equals("Client")) {
                     Intent intent = new Intent(getApplicationContext(), clientRegister.class);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 }
                 else if (user.equals("Cook")){
                     Intent intent = new Intent(getApplicationContext(),cookRegister.class);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 }
 
 

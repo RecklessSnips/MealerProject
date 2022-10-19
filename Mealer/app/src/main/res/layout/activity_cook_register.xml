@@ -116,6 +116,18 @@
                 android:layout_height="20dp" />
 
             <EditText
+                android:id="@+id/VoidCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:importantForAutofill="no"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <EditText
                 android:id="@+id/editTextTextPersonName5"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
