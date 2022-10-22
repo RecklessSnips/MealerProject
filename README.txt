@@ -1,0 +1,2 @@
+Administrator username: chickenspicyburgermayo
+Administrator masterPassword: SpicyMayoBurger119
