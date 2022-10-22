@@ -35,7 +35,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/UserEmail"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -43,10 +43,10 @@
                 android:hint="@string/email_username"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,TextFields" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/pwdEditText"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

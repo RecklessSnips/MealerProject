@@ -28,7 +28,7 @@ import java.util.List;
 
 //import com.example.mealer.databinding.ActivityCookRegisterBinding;
 
-public class cookRegister extends AppCompatActivity {
+public class CookRegister extends AppCompatActivity {
     private DatabaseReference accountsReference;
     // store info into accounts(linkedList)
     private LinkedList<Account> accounts = new LinkedList<>();
@@ -38,8 +38,8 @@ public class cookRegister extends AppCompatActivity {
 
     private boolean ifInputsAreValid() {
         if(TextUtils.isEmpty(editFirstName1.getText().toString()) || TextUtils.isEmpty(editLastName1.getText().toString())
-        || TextUtils.isEmpty(editEmailAddress1.getText().toString()) || TextUtils.isEmpty(editAccountPass1.getText().toString())
-        || TextUtils.isEmpty(editAddress1.getText().toString()) || TextUtils.isEmpty(editTextTextUserDescription.getText().toString())){
+                || TextUtils.isEmpty(editEmailAddress1.getText().toString()) || TextUtils.isEmpty(editAccountPass1.getText().toString())
+                || TextUtils.isEmpty(editAddress1.getText().toString()) || TextUtils.isEmpty(editTextTextUserDescription.getText().toString())){
             prompt("Please fill out all the information").show();
             return false;
         }

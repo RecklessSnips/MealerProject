@@ -44,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".clientRegister"
+            android:name=".ClientRegister"
             android:exported="false"
             android:label="@string/title_activity_client_register"
             android:theme="@style/Theme.Mealer.NoActionBar">

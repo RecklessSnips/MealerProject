@@ -3,29 +3,13 @@ package com.example.mealer;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.mealer.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
                 String user = userTypes.getSelectedItem().toString();
                 if (user.equals("Client")) {
-                    Intent intent = new Intent(getApplicationContext(), clientRegister.class);
+                    Intent intent = new Intent(getApplicationContext(), ClientRegister.class);
                     startActivity(intent);
                 }
                 else if (user.equals("Cook")){
-                    Intent intent = new Intent(getApplicationContext(),cookRegister.class);
+                    Intent intent = new Intent(getApplicationContext(),CookRegister.class);
                     startActivity(intent);
                 }
 

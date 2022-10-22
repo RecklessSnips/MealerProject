@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mealer.datas.Account;
+import com.example.mealer.datas.ClientAccount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,14 +24,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.LinkedList;
-import java.util.List;
 
 //import com.example.mealer.databinding.ActivityCookRegisterBinding;
 
 public class ClientRegister extends AppCompatActivity {
     private DatabaseReference accountsReference;
     // store info into accounts(linkedList)
-    private LinkedList<Account> accounts = new LinkedList<>();
+    private LinkedList<ClientAccount> accounts = new LinkedList<>();
     private EditText editFirstName, editLastName, editEmailAddress,
             accountPassword, editAddress, editCreditCardInfo;
     private String clientFirstname, clientLastname, clientEmailAddress, clientPassword, clientAddress, clientEditCreditCardInfo ;
@@ -43,7 +43,7 @@ public class ClientRegister extends AppCompatActivity {
             return false;
         }
         // check redundant
-        for(Account a: accounts){
+        for(ClientAccount a: accounts){
             if(a.getLastName().equals(clientLastname) && a.getFirstName().equals(clientFirstname)){
                 prompt("User already exists!").show();
             } else if(a.getEmailAddress().equals(clientEmailAddress)){
@@ -64,7 +64,7 @@ public class ClientRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cook_register);
+        setContentView(R.layout.activity_client_register);
 
         editFirstName =  findViewById(R.id.editFirstName);
         editLastName =  findViewById(R.id.editLastName);
@@ -190,7 +190,7 @@ public class ClientRegister extends AppCompatActivity {
                 // clear the database otherwise it will print all the accounts in hietory
                 accounts.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    Account account = child.getValue(Account.class);
+                    ClientAccount account = child.getValue(ClientAccount.class);
                     accounts.add(account);
                 }
 
@@ -211,7 +211,7 @@ public class ClientRegister extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(ifInputsAreValid()) {
-                    Account account = new Account(clientFirstname, clientLastname, clientEmailAddress,
+                    ClientAccount account = new ClientAccount(clientFirstname, clientLastname, clientEmailAddress,
                             clientPassword,clientAddress,clientEditCreditCardInfo);
                     // now add accounts into the firebase by call the method push() and getKey() and setValue()
                     accountsReference.child(accountsReference.push().getKey()).setValue(account);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clientRegister">
+    tools:context=".ClientRegister">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -93,7 +93,7 @@
                 android:layout_height="20dp" />
 
             <EditText
-                android:id="@+id/editAccountPass"
+                android:id="@+id/accountPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"

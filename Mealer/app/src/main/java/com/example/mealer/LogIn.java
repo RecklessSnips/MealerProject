@@ -41,7 +41,6 @@ public class LogIn extends AppCompatActivity {
     private String firstname,emailAddress, password;
     //****************************************************************************************************************
     // attributes for Client
-//    private EditText UserEmail, pwdEditText;
     private String clientFirstname, clientEmailAddress, clientPassword;
 
     //****************************************************************************************************************
@@ -59,7 +58,7 @@ public class LogIn extends AppCompatActivity {
         boolean correctPassword = false;
         Account client = null;
         for(Account a: accounts){
-            if(a.getFirstName().equals(clientFirstname) || a.getEmailAddress().equals(clientEmailAddress)){
+            if(a.getEmailAddress().equals(clientEmailAddress)){
                 whetherExist = true;
                 client = a;
             }
@@ -98,7 +97,7 @@ public class LogIn extends AppCompatActivity {
         boolean correctPassword_1 = false;
         Account client = null;
         for(Account a: accounts){
-            if(a.getFirstName().equals(firstname) || a.getEmailAddress().equals(emailAddress)){
+            if(a.getEmailAddress().equals(emailAddress)){
                 whetherExist_1 = true;
                 client = a;
             }
@@ -125,8 +124,8 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         //****************************************************************************************************************
         // Initiation for Client
-        UserEmail = findViewById(R.id.editEmailAddress);
-        pwdEditText = findViewById(R.id.accountPassword);
+        UserEmail = findViewById(R.id.UserEmail);
+        pwdEditText = findViewById(R.id.pwdEditText);
 
         accountsReference = FirebaseDatabase.getInstance().getReference("Clients");
 
@@ -185,8 +184,8 @@ public class LogIn extends AppCompatActivity {
         });
         //****************************************************************************************************************
         // Initiation for Cook
-        UserEmail = findViewById(R.id.editEmailAddress1);
-        pwdEditText = findViewById(R.id.editAccountPass1);
+        UserEmail = findViewById(R.id.UserEmail);
+        pwdEditText = findViewById(R.id.pwdEditText);
 
         accountsReference = FirebaseDatabase.getInstance().getReference("Cooks");
 
