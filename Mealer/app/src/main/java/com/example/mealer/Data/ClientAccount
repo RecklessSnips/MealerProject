@@ -6,18 +6,18 @@ public class ClientAccount {
     private String emailAddress;
     private String pwd;
     private String address;
-    private String userDescription;
+    private String clientEditCreditCardInfo;
 
     public ClientAccount() {
     }
 
-    public ClientAccount(String firstName, String lastName, String emailAddress, String pwd, String address, String userDescription) {
+    public ClientAccount(String firstName, String lastName, String emailAddress, String pwd, String address, String clientEditCreditCardInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.pwd = pwd;
         this.address = address;
-        this.userDescription = userDescription;
+        this.clientEditCreditCardInfo = clientEditCreditCardInfo;
     }
 
     public String getFirstName() {
@@ -60,12 +60,12 @@ public class ClientAccount {
         this.address = address;
     }
 
-    public String getUserDescription() {
-        return userDescription;
+    public String getClientEditCreditCardInfo() {
+        return clientEditCreditCardInfo;
     }
 
     public void setUserDescription(String userDescription) {
-        this.userDescription = userDescription;
+        this.clientEditCreditCardInfo = userDescription;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ClientAccount {
                 ", emailAddress='" + emailAddress + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", address='" + address + '\'' +
-                ", userDescription='" + userDescription + '\'' +
+                ", userDescription='" + clientEditCreditCardInfo + '\'' +
                 '}';
     }
 }
