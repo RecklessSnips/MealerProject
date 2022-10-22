@@ -37,21 +37,20 @@ public class LogIn extends AppCompatActivity {
     private LinkedList<Account> accounts = new LinkedList<>();
     private String role;
     // attributes for Cook
-    private EditText editFirstName1, editEmailAddress1, editAccountPass1;
+    private EditText UserEmail, pwdEditText;
     private String firstname,emailAddress, password;
     //****************************************************************************************************************
     // attributes for Client
-    private EditText editFirstName, editEmailAddress, accountPassword;
+//    private EditText UserEmail, pwdEditText;
     private String clientFirstname, clientEmailAddress, clientPassword;
 
     //****************************************************************************************************************
     private boolean ifClientInputsAreValid() {
-        if(TextUtils.isEmpty(editFirstName.getText().toString()) ||
-                TextUtils.isEmpty(editEmailAddress.getText().toString())){
+        if(TextUtils.isEmpty(UserEmail.getText().toString())){
             prompt("Please type your first name or email address").show();
             return false;
         }
-        if(TextUtils.isEmpty(accountPassword.getText().toString())){
+        if(TextUtils.isEmpty(pwdEditText.getText().toString())){
             prompt("Please type your password").show();
             return false;
         }
@@ -86,12 +85,11 @@ public class LogIn extends AppCompatActivity {
     }
     //****************************************************************************************************************
     private boolean ifCookInputsAreValid() {
-        if(TextUtils.isEmpty(editFirstName1.getText().toString()) ||
-                TextUtils.isEmpty(editEmailAddress1.getText().toString())){
+        if(TextUtils.isEmpty(UserEmail.getText().toString())){
             prompt("Please type your first name or email address").show();
             return false;
         }
-        if(TextUtils.isEmpty(editAccountPass1.getText().toString())){
+        if(TextUtils.isEmpty(pwdEditText.getText().toString())){
             prompt("Please type your password").show();
             return false;
         }
@@ -127,31 +125,13 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         //****************************************************************************************************************
         // Initiation for Client
-        editFirstName =  findViewById(R.id.editFirstName);
-        editEmailAddress = findViewById(R.id.editEmailAddress);
-        accountPassword = findViewById(R.id.accountPassword);
+        UserEmail = findViewById(R.id.editEmailAddress);
+        pwdEditText = findViewById(R.id.accountPassword);
 
         accountsReference = FirebaseDatabase.getInstance().getReference("Clients");
-        // firstname
-        editFirstName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                clientFirstname = editable.toString();
-            }
-        });
 
         // emailAddress
-        editEmailAddress.addTextChangedListener(new TextWatcher() {
+        UserEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -169,7 +149,7 @@ public class LogIn extends AppCompatActivity {
         });
 
         // password
-        accountPassword.addTextChangedListener(new TextWatcher() {
+        pwdEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -205,31 +185,13 @@ public class LogIn extends AppCompatActivity {
         });
         //****************************************************************************************************************
         // Initiation for Cook
-        editFirstName1 =  findViewById(R.id.editFirstName1);
-        editEmailAddress1 = findViewById(R.id.editEmailAddress1);
-        editAccountPass1 = findViewById(R.id.editAccountPass1);
+        UserEmail = findViewById(R.id.editEmailAddress1);
+        pwdEditText = findViewById(R.id.editAccountPass1);
 
         accountsReference = FirebaseDatabase.getInstance().getReference("Cooks");
-        // firstname
-        editFirstName1.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                firstname = editable.toString();
-            }
-        });
 
         // emailAddress
-        editEmailAddress1.addTextChangedListener(new TextWatcher() {
+        UserEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -247,7 +209,7 @@ public class LogIn extends AppCompatActivity {
         });
 
         // password
-        editAccountPass1.addTextChangedListener(new TextWatcher() {
+        pwdEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -314,7 +276,5 @@ public class LogIn extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
-
 }
