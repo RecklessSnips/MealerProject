@@ -1,0 +1,8 @@
+Assumptions: 
+Assume that there must be atleast 1 administrator.
+Assume that there can be 0 clients or customers at the start of the application.
+Assume that the administrator only needs a username and password to access administrator functions.
+Assume that every user can logIn and logOut of the system.
+Assume that the variables in class CreditCardinfo is sufficient information for payment.
+Assume that the creation of a Client, Administrator object is synonymous with the registration of a user account.
+
