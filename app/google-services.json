@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "761691755468",
+    "project_id": "mealerproject",
+    "storage_bucket": "mealerproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761691755468:android:cb12e8899725c9f802c369",
+        "android_client_info": {
+          "package_name": "com.example.mealer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761691755468-0eegh0124c2us2d8k9ffq2a5i48epeo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpgXlsX4hPrfbN2Ak7zi0p34BunAe7nY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761691755468-0eegh0124c2us2d8k9ffq2a5i48epeo9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
