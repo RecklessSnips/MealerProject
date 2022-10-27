@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private Button logIn, register;
     private EditText username, password;
     private String name, combination, role;
-    private CheckBox clientCheckBox, adminCheckBox, cookCheckBox;
+    private RadioGroup radioGroup;
+    private RadioButton clientRadioBtn, adminRadioBtn, cookRadioBtn;
     private Client client = null;
     private Cook cook = null;
 
@@ -87,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+    private boolean ifAdminInputsAreValid(){
+        boolean valid = false;
+        if(TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
+            prompt("Please fill out all the information").show();
+            valid = false;
+        }
+        if(username.getText().toString().equals("admin@gmail.com")
+                && password.getText().toString().equals("iamtheadmin")){
+            valid = true;
+        }
+        return valid;
+    }
 
     private Toast prompt(String text){
         Toast toast = Toast.makeText(getApplicationContext(),
@@ -94,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         return toast;
     }
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,32 +121,22 @@ public class MainActivity extends AppCompatActivity {
         // user info
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        // checkBox *************************************************************************
-        clientCheckBox = findViewById(R.id.clientCheckbox);
-        adminCheckBox = findViewById(R.id.adminCheckBox);
-        cookCheckBox = findViewById(R.id.cookCheckBox);
+        // radio group *************************************************************************
+        radioGroup = findViewById(R.id.radioGroup);
+        clientRadioBtn = findViewById(R.id.clientRadioBtn);
+        adminRadioBtn = findViewById(R.id.adminRadioBtn);
+        cookRadioBtn = findViewById(R.id.cookRadioBtn);
 
-        clientCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                    role = "Client";
-            }
-        });
-
-        adminCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                    role = "Admin";
-            }
-        });
-
-        cookCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                    role = "Cook";
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.clientRadioBtn){
+                    role = "client";
+                }else if(i == R.id.cookRadioBtn){
+                    role = "cook";
+                }else{
+                    role = "admin";
+                }
             }
         });
 
@@ -213,19 +218,30 @@ public class MainActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(clientCheckBox.isChecked()) {
-                    if (ifClientInputsAreValid()) {
-                        Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
-                        i.putExtra("name", name);
-                        i.putExtra("role", role);
-                        startActivity(i);
+                if(radioGroup.getCheckedRadioButtonId() != -1) {
+                    if(cookRadioBtn.isChecked()) {
+                        if (ifCookInputsAreValid()) {
+                            Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
+                            i.putExtra("name", name);
+                            i.putExtra("role", role);
+                            startActivity(i);
+                        }
                     }
-                } else if(cookCheckBox.isChecked()) {
-                    if (ifCookInputsAreValid()) {
-                        Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
-                        i.putExtra("name", name);
-                        i.putExtra("role", role);
-                        startActivity(i);
+                    if(clientRadioBtn.isChecked()) {
+                        if (ifClientInputsAreValid()) {
+                            Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
+                            i.putExtra("name", name);
+                            i.putExtra("role", role);
+                            startActivity(i);
+                        }
+                    }
+                    if(adminRadioBtn.isChecked()) {
+                        if (ifAdminInputsAreValid()) {
+                            Intent i = new Intent(getApplicationContext(), AdminActivity.class);
+                            i.putExtra("name", name);
+                            i.putExtra("role", role);
+                            startActivity(i);
+                        }
                     }
                 }else{
                     prompt("Please select your role!").show();

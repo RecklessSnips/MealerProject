@@ -31,4 +31,6 @@
     <string name="cookCheckBox">Cook</string>
     <string name="adminCheckBox">Admin</string>
     <string name="userName">Email</string>
+    <string name="adminWelcome">TextView</string>
+    <string name="adminWelcomeMessage" />
 </resources>
