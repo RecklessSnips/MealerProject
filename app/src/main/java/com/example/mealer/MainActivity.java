@@ -99,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
         if(username.getText().toString().equals("admin@gmail.com")
                 && password.getText().toString().equals("iamtheadmin")){
             valid = true;
+        }else{
+            if (! username.getText().toString().equals("admin@gmail.com")) {
+                prompt("Admin doesn't exist!").show();
+                valid = false;
+            }else if(!password.getText().toString().equals("iamtheadmin")){
+                prompt("password is incorrect!").show();
+                valid = false;
+            }
         }
         return valid;
     }
