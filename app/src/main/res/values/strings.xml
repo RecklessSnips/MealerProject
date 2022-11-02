@@ -33,4 +33,22 @@
     <string name="userName">Email</string>
     <string name="adminWelcome">TextView</string>
     <string name="adminWelcomeMessage" />
+    <string name="clients_complaints">Clients\' complaints</string>
+    <string name="client_prompt">Client:</string>
+    <string name="to_cook_prompt">To Cook:</string>
+    <string name="complaint_client_name">Client Name:</string>
+    <string name="complaint_cook_name">Cook Name:</string>
+    <string name="complaint_msg">Complaint Description</string>
+    <string name="dismissBtn">dismiss</string>
+    <string name="suspend_t_Btn">suspend---T</string>
+    <string name="suspend_p_Btn">suspend---P</string>
+    <string name="check_complaintsBtn">complaints</string>
+    <string name="sorry_your_count_has_been_suspend_from_today_until_december_21_22_2023">Sorry, your count has been suspend from today, until December 21.22, 2023</string>
+    <string name="sorry_your_account_has_been_permanently_suspended_please_register_a_new_one">Sorry, your account has been permanently suspended, please register a new one.</string>
+    <string name="suspendTime">How long do you want to suspend</string>
+    <string name="suspendTimeButton">confirm</string>
+    <string name="cookSuspendTime" />
+    <string name="suspendCookID">TextView</string>
+    <string name="logInCookID">TextView</string>
+    <string name="suspend_date_hint">Suspend date?</string>
 </resources>

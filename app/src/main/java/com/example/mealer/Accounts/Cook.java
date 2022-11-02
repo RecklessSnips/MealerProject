@@ -4,7 +4,10 @@ public class Cook extends Account{
     // void cheque should be a pic
     private String voidCheque;
     private String description;
+    // attributes to determine whether this cook is active
+    private String isActive = "active";
 
+    // to avoid JAVA reflection issues
     public Cook() {
     }
 
@@ -12,6 +15,14 @@ public class Cook extends Account{
         super(firstName, lastName, email, pwd, address);
         this.voidCheque = voidCheque;
         this.description = description;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 
     public String getVoidCheque() {

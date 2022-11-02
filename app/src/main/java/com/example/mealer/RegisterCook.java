@@ -31,7 +31,7 @@ public class RegisterCook extends AppCompatActivity {
     private EditText cookFirst, cookLast, cookEmail, cookPassword, cookVoidCheque, cookAddress, cookDescription;
     private Button cookRegisterBtn;
     private String fst, lst, eml, pwd, cheque, add, description;
-    private List<Cook> cookAccounts = new LinkedList<>();
+    private List<Cook> cookAccounts;
 
     private boolean ifInputsAreValid() {
         if(TextUtils.isEmpty(cookFirst.getText().toString()) || TextUtils.isEmpty(cookLast.getText().toString())
@@ -75,6 +75,7 @@ public class RegisterCook extends AppCompatActivity {
 
         cookRegisterBtn = findViewById(R.id.cookRegisterBtn);
 
+        cookAccounts = new LinkedList<>();
         // extract the data from the database
         cookReference = FirebaseDatabase.getInstance().getReference("Cooks");
 
@@ -84,7 +85,8 @@ public class RegisterCook extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot child : snapshot.getChildren()){
                     cookAccounts.clear();
-                    Account cook = child.getValue(Cook.class);
+                    Cook cook = child.getValue(Cook.class);
+                    cook.setIsActive("active");
                     cookAccounts.add((Cook) cook);
                 }
             }

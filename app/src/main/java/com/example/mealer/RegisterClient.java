@@ -30,7 +30,7 @@ public class RegisterClient extends AppCompatActivity {
     private EditText clientFirst, clientLast, clientEmail, clientPassword, clientAddress, clientCreditCard;
     private Button clientRegisterBtn;
     private String first, last, email, password, address, creditCard;
-    private List<Client> clientAccounts = new LinkedList<>();
+    private List<Client> clientAccounts ;
 
     private boolean ifInputsAreValid() {
         if(TextUtils.isEmpty(clientFirst.getText().toString()) || TextUtils.isEmpty(clientLast.getText().toString())
@@ -71,6 +71,7 @@ public class RegisterClient extends AppCompatActivity {
         clientCreditCard = findViewById(R.id.clientCreditCard);
         clientRegisterBtn = findViewById(R.id.clientRegisterBtn);
 
+        clientAccounts = new LinkedList<>();
         // extract the data from the database
         clientReference = FirebaseDatabase.getInstance().getReference("Clients");
 

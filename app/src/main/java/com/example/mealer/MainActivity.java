@@ -11,8 +11,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,9 +40,13 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton clientRadioBtn, adminRadioBtn, cookRadioBtn;
     private Client client = null;
     private Cook cook = null;
+    // to transfer this cookID to the complaint page
+    private String cookID;
+    // to specify the current log in cook
+    private Cook loggedInCook;
 
-    private List<Client> clientAccounts = new LinkedList<>();
-    private List<Cook> cookAccounts = new LinkedList<>();
+    private List<Client> clientAccounts ;
+    private List<Cook> cookAccounts;
 
     // check if the inputs are valid
     private boolean ifClientInputsAreValid() {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         for(Cook a : cookAccounts){
             if(a.getEmail().equals(username.getText().toString())){
                 cook = a;
+                loggedInCook = cook;
             }
         }
         if(cook == null){
@@ -88,7 +92,24 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         }
+
         return true;
+    }
+
+    // additional method for checking a cook
+    // whether he/she is being suspended
+    private boolean ifCookActive(){
+        boolean active = true;
+        for(Cook a : cookAccounts){
+            // isActive attribute is a String, simply tells if
+            // is active or not
+            if(a.getIsActive().equals("active")){
+                active = true;
+            }else{
+                active = false;
+            }
+        }
+        return active;
     }
     private boolean ifAdminInputsAreValid(){
         boolean valid = false;
@@ -135,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
         adminRadioBtn = findViewById(R.id.adminRadioBtn);
         cookRadioBtn = findViewById(R.id.cookRadioBtn);
 
+        // list
+        clientAccounts = new LinkedList<>();
+        cookAccounts = new ArrayList<>();
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -155,11 +180,14 @@ public class MainActivity extends AppCompatActivity {
         clientReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                clientAccounts.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    clientAccounts.clear();
+
                     Account client = child.getValue(Client.class);
+//                    System.out.println(client);
                     clientAccounts.add((Client) client);
                 }
+//                System.out.println(clientAccounts.size());
             }
 
             @Override
@@ -171,11 +199,15 @@ public class MainActivity extends AppCompatActivity {
         cookReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                cookAccounts.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    cookAccounts.clear();
+
                     Account cook = child.getValue(Cook.class);
+//                    System.out.println(cook);
+                    cook.setId(child.getKey());
                     cookAccounts.add((Cook) cook);
                 }
+//                System.out.println(cookAccounts.size());
             }
 
             @Override
@@ -228,11 +260,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(radioGroup.getCheckedRadioButtonId() != -1) {
                     if(cookRadioBtn.isChecked()) {
+//                        System.out.println(username);
+//                        System.out.println(role);
                         if (ifCookInputsAreValid()) {
-                            Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
-                            i.putExtra("name", name);
-                            i.putExtra("role", role);
-                            startActivity(i);
+//                            System.out.println(cook);
+                            // additional check, if the cook account is active
+                            if(ifCookActive()) {
+                                Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
+                                i.putExtra("name", name);
+                                i.putExtra("role", role);
+                                startActivity(i);
+                            }else{
+                                // not using for loop here because we need to
+                                // make sure this is the current logged in cook
+                                // which won't pass all the cookID to the CookSuspendTempActivity
+                                if(loggedInCook.getIsActive().equals("Suspend temporarily")){
+                                    cookID = loggedInCook.getId();
+//                                        System.out.println(cookID);
+                                    Intent i = new Intent(getApplicationContext(), CookSuspendTempActivity.class);
+                                    i.putExtra("CookID", cookID);
+                                    startActivity(i);
+                                }else if(loggedInCook.getIsActive().equals("Suspend permanently")){
+                                    Intent i = new Intent(getApplicationContext(), CookSuspendPermActivity.class);
+                                    startActivity(i);
+                                }
+                            }
                         }
                     }
                     if(clientRadioBtn.isChecked()) {
@@ -268,7 +320,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

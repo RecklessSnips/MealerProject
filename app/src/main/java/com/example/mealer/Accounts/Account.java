@@ -6,6 +6,7 @@ public class Account {
     protected String email;
     protected String pwd;
     protected String address;
+    protected String id;
 
     public Account() {
 
@@ -17,6 +18,15 @@ public class Account {
         this.email = email;
         this.pwd = pwd;
         this.address = address;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
