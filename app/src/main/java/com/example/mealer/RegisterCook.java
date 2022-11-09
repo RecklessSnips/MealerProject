@@ -83,8 +83,8 @@ public class RegisterCook extends AppCompatActivity {
         cookReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                cookAccounts.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    cookAccounts.clear();
                     Cook cook = child.getValue(Cook.class);
                     cook.setIsActive("active");
                     cookAccounts.add((Cook) cook);

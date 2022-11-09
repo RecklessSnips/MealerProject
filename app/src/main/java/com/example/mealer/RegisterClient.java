@@ -79,8 +79,8 @@ public class RegisterClient extends AppCompatActivity {
         clientReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                clientAccounts.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    clientAccounts.clear();
                     Account client = child.getValue(Client.class);
                     clientAccounts.add((Client) client);
                 }
