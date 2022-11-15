@@ -266,9 +266,11 @@ public class MainActivity extends AppCompatActivity {
 //                            System.out.println(cook);
                             // additional check, if the cook account is active
                             if(ifCookActive()) {
-                                Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
+                                cookID = loggedInCook.getId();
+                                Intent i = new Intent(getApplicationContext(), CookActivity.class);
                                 i.putExtra("name", name);
                                 i.putExtra("role", role);
+                                i.putExtra("CookID", cookID);
                                 startActivity(i);
                             }else{
                                 // not using for loop here because we need to
