@@ -3,7 +3,7 @@ package com.example.mealer.Accounts;
 import java.util.List;
 
 public class Meal {
-    //    keep track of IDs
+//    keep track of IDs
     private String mealID;
     private String cookID;
     private String mealName;
@@ -12,11 +12,11 @@ public class Meal {
 
     // main dish, soup, desert, etc.
     private String mealType;
-    //    Cuisine type
+//    Cuisine type
     private String cuisineType;
     private String ingredients;
     private String allergens;
-    //  if I use the double, the firebase will automatically create a
+//  if I use the double, the firebase will automatically create a
 //  0.0 value, which not looks very well.
     private String price;
     private String description;

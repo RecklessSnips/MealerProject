@@ -1,4 +1,5 @@
 package com.example.mealer;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 

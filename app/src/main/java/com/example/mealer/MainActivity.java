@@ -99,15 +99,20 @@ public class MainActivity extends AppCompatActivity {
     // additional method for checking a cook
     // whether he/she is being suspended
     private boolean ifCookActive(){
-        boolean active = true;
-        for(Cook a : cookAccounts){
-            // isActive attribute is a String, simply tells if
-            // is active or not
-            if(a.getIsActive().equals("active")){
-                active = true;
-            }else{
-                active = false;
-            }
+        boolean active;
+//        for(Cook a : cookAccounts){
+//            // isActive attribute is a String, simply tells if
+//            // is active or not
+//            if(a.getIsActive().equals("active")){
+//                active = true;
+//            }else{
+//                active = false;
+//            }
+//        }
+        if (loggedInCook.getIsActive().equals("active")){
+            active = true;
+        } else {
+            active = false;
         }
         return active;
     }
@@ -267,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
                             // additional check, if the cook account is active
                             if(ifCookActive()) {
                                 cookID = loggedInCook.getId();
+                                System.out.println(cookID);
                                 Intent i = new Intent(getApplicationContext(), CookActivity.class);
                                 i.putExtra("name", name);
                                 i.putExtra("role", role);
