@@ -109,11 +109,7 @@ public class MainActivity extends AppCompatActivity {
 //                active = false;
 //            }
 //        }
-        if (loggedInCook.getIsActive().equals("active")){
-            active = true;
-        } else {
-            active = false;
-        }
+        active = loggedInCook.getIsActive().equals("active");
         return active;
     }
     private boolean ifAdminInputsAreValid(){
