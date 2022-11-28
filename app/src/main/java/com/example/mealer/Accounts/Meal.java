@@ -25,8 +25,10 @@ public class Meal {
     }
 
     // test constructor for manually create
-    public Meal(String name, String id){
+    public Meal(String name, String mealType, String cuisineType, String id){
         mealName = name;
+        this.mealType = mealType;
+        this.cuisineType = cuisineType;
         cookID = id;
     }
     public Meal(String cookID, String mealName, String mealType, String cuisineType, String ingredients, String allergens, String price, String description) {
