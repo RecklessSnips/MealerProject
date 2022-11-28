@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class AdminManagement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_management);
 
-        listView = findViewById(R.id.listView);
+        listView = findViewById(R.id.search_listView);
 
         // get there paths / snapshots
         clientReference = FirebaseDatabase.getInstance().getReference("Clients");
