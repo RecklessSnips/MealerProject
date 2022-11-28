@@ -22,10 +22,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MenuItem extends AppCompatActivity {
-    private TextView meal_id, meal_name;
+    private TextView meal_id, meal_name, meal_type, cuisine_type;
     private String id;
     private String name;
     private String cook_id;
+    private String mealType, cuisineType;
     private Button offer, delete;
 
     // in this class we can add meal to the offer menu
@@ -34,6 +35,7 @@ public class MenuItem extends AppCompatActivity {
     // need menuReference to delete
     private DatabaseReference offerReference, menuReference;
     private List<Meal> offeredMeal;
+//    private List<String> offeredList;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,21 +47,27 @@ public class MenuItem extends AppCompatActivity {
         id = intent.getStringExtra("meal-ID");
         name = intent.getStringExtra("meal-Name");
         cook_id = intent.getStringExtra("cook-ID");
+        mealType = intent.getStringExtra("meal-Type");
+        cuisineType = intent.getStringExtra("cuisine-Type");
 
         meal_id = findViewById(R.id.m__id);
         meal_name = findViewById(R.id.m__name);
+        meal_type = findViewById(R.id.m__type);
+        cuisine_type = findViewById(R.id.cuisine__type);
 
         offer = findViewById(R.id.offer);
         delete  = findViewById(R.id.delete);
 
         meal_id.setText(id);
         meal_name.setText(name);
+        meal_type.setText(mealType);
+        cuisine_type.setText(cuisineType);
 
         // locate the data base path we want to put the data
         offerReference = FirebaseDatabase.getInstance().getReference("Offer/" + cook_id);
         menuReference = FirebaseDatabase.getInstance().getReference("Menu/" + cook_id);
         offeredMeal = new LinkedList<>();
-
+//        offeredList = new LinkedList<>();
 
         offerReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,6 +87,7 @@ public class MenuItem extends AppCompatActivity {
             }
         });
 
+
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +96,7 @@ public class MenuItem extends AppCompatActivity {
 //                System.out.println(name);             Just for testing
 //                System.out.println(cook_id);          Just for testing
 //                System.out.println(id);               //Just for testing
-                Meal meal = new Meal(name, cook_id);
+                Meal meal = new Meal(name, mealType, cuisineType, cook_id);
                 offerReference.child(id).setValue(meal);
 //                System.out.println(offeredMeal);
                 //Just for testing

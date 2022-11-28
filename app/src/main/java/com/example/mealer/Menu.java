@@ -65,14 +65,16 @@ public class Menu extends AppCompatActivity {
                     Map<String, String> map = new HashMap<>();
                     map.put("meal_id", m.getMealID());
                     map.put("meal_name", m.getMealName());
+                    map.put("meal_type", m.getMealType());
+                    map.put("cuisine_type", m.getCuisineType());
                     list.add(map);
                 }
                 // test
 //                System.out.println(mealList);
                 // send to the listView
                 SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), list,
-                        R.layout.meal_list_view, new String[]{"meal_id", "meal_name"},
-                        new int[]{R.id.m__id, R.id.m__name});
+                        R.layout.meal_list_view, new String[]{"meal_id", "meal_name", "meal_type", "cuisine_type"},
+                        new int[]{R.id.m__id, R.id.m__name, R.id.m__type, R.id.cuisine__type});
                 menu.setAdapter(adapter);
             }
 
@@ -88,10 +90,14 @@ public class Menu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView mealID = view.findViewById(R.id.m__id);
                 TextView meal = view.findViewById(R.id.m__name);
+                TextView mealType = view.findViewById(R.id.m__type);
+                TextView cuisineType = view.findViewById(R.id.cuisine__type);
 
                 Intent intent1 = new Intent(getApplicationContext(), MenuItem.class);
                 intent1.putExtra("meal-ID", mealID.getText().toString());
                 intent1.putExtra("meal-Name", meal.getText().toString());
+                intent1.putExtra("meal-Type", mealType.getText().toString());
+                intent1.putExtra("cuisine-Type", cuisineType.getText().toString());
                 intent1.putExtra("cook-ID", cookID);
                 startActivity(intent1);
             }

@@ -36,7 +36,7 @@ public class ExampleUnitTest {
 
     @Test
     public void checkMealCookID() {
-        Meal meal = new Meal("Burger", "Cook1");
+        Meal meal = new Meal("Burger", "fast food", "Western", "Cook1");
         assertEquals("Check if the meal matches the cook id", "Cook1", meal.getCookID());
     }
 }

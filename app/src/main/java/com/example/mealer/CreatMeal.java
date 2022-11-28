@@ -243,11 +243,11 @@ public class CreatMeal extends AppCompatActivity {
     }
 
     // manually create
-    public void create(){
-        String[] meal = new String[]{"rice", "noods", "hi", "ji", "ui", "io","pp"};
-        for(String m : meal){
-            Meal meal2 = new Meal(m, id);
-            mealReference.push().setValue(meal2);
-        }
-    }
+//    public void create(){
+//        String[] meal = new String[]{"rice", "noods", "hi", "ji", "ui", "io","pp"};
+//        for(String m : meal){
+//            Meal meal2 = new Meal(m, id);
+//            mealReference.push().setValue(meal2);
+//        }
+//    }
 }
