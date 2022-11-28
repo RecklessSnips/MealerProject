@@ -42,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private Cook cook = null;
     // to transfer this cookID to the complaint page
     private String cookID;
+    private String clientID;
     // to specify the current log in cook
     private Cook loggedInCook;
+    // same idea, track the logged in client ID
+    private Client loggedInClient;
 
     private List<Client> clientAccounts ;
     private List<Cook> cookAccounts;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         for(Client a: clientAccounts){
             if(a.getEmail().equals(username.getText().toString())){
                 client = a;
+                loggedInClient = client;
             }
         }
         if(client == null){
@@ -186,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Account client = child.getValue(Client.class);
 //                    System.out.println(client);
+                    client.setId(child.getKey());
                     clientAccounts.add((Client) client);
                 }
 //                System.out.println(clientAccounts.size());
@@ -293,10 +298,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(clientRadioBtn.isChecked()) {
                         if (ifClientInputsAreValid()) {
+                            clientID = loggedInClient.getId();
+//                            System.out.println(loggedInClient);
+//                            System.out.println(loggedInClient.getId());
+//                            System.out.println(clientID);
                             Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
                             i.putExtra("name", name);
                             i.putExtra("role", role);
+                            i.putExtra("ClientID", clientID);
                             startActivity(i);
+
                         }
                     }
                     if(adminRadioBtn.isChecked()) {
