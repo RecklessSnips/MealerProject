@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class CookActivity extends AppCompatActivity {
     private TextView cookWelcomeMsg;
-    private Button mealMenu, offerMenu, addMeal;
+    private Button mealMenu, offerMenu, addMeal, orders;
     private String name;
     private String role;
     private String cookID;
@@ -27,6 +27,7 @@ public class CookActivity extends AppCompatActivity {
         mealMenu = findViewById(R.id.mealMenu);
         offerMenu = findViewById(R.id.offerMenu);
         addMeal = findViewById(R.id.addMeal);
+        orders = findViewById(R.id.orders);
 
         Intent i = getIntent();
         name = i.getStringExtra("name");
@@ -63,6 +64,16 @@ public class CookActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreatMeal.class);
+                intent.putExtra("Name", name);
+                intent.putExtra("CookID", cookID);
+                startActivity(intent);
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Orders.class);
                 intent.putExtra("Name", name);
                 intent.putExtra("CookID", cookID);
                 startActivity(intent);
