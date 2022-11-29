@@ -24,7 +24,7 @@ public class WelcomeMenu extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_menu);
 
         welcomeMenu_msg = findViewById(R.id.welcomeMenu_msg);
-        textRole=findViewById(R.id.textRole);
+//        textRole = findViewById(R.id.role);
         order = findViewById(R.id.order);
         ordered = findViewById(R.id.ordered);
         logoff_1 = findViewById(R.id.logoff_1);
@@ -34,8 +34,8 @@ public class WelcomeMenu extends AppCompatActivity {
         role = i.getStringExtra("role");
         id = i.getStringExtra("ClientID");
 
-        welcomeMenu_msg.setText( name + ",");
-        textRole.setText (role+"!");
+        welcomeMenu_msg.setText(name + ", you have signed in as a "
+                + role + "!");
 
         order.setOnClickListener(new View.OnClickListener() {
             @Override

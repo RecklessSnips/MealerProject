@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
         Intent i = getIntent();
         name = i.getStringExtra("name");
         role = i.getStringExtra("role");
-        adminWelcomeMsg.setText("Welcome " + name + ", you have signed in as a "
+        adminWelcomeMsg.setText("Welcome " + name + ", you have signed in as an "
                 + role + "!");
 
         checkComplaintsBTN.setOnClickListener(new View.OnClickListener() {

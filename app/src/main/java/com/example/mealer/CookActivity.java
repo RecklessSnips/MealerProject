@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CookActivity extends AppCompatActivity {
     private TextView cookWelcomeMsg;
-    private Button mealMenu, offerMenu, addMeal, orders, profile;
+    private Button mealMenu, offerMenu, addMeal, orders, profile, logoff_3;
     private String name;
     private String role;
     private String cookID;
@@ -29,6 +30,7 @@ public class CookActivity extends AppCompatActivity {
         addMeal = findViewById(R.id.addMeal);
         orders = findViewById(R.id.orders);
         profile = findViewById(R.id.profile);
+        logoff_3 = findViewById(R.id.logoff_3);
 
         Intent i = getIntent();
         name = i.getStringExtra("name");
@@ -88,6 +90,15 @@ public class CookActivity extends AppCompatActivity {
                 intent.putExtra("Name", name);
                 intent.putExtra("CookID", cookID);
                 startActivity(intent);
+            }
+        });
+
+        logoff_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged off!", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
     }
