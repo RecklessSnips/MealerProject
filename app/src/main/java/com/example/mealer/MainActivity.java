@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
                             clientID = loggedInClient.getId();
 //                            System.out.println(loggedInClient);
 //                            System.out.println(loggedInClient.getId());
-//                            System.out.println(clientID);
+                            System.out.println(clientID);
                             Intent i = new Intent(getApplicationContext(), WelcomeMenu.class);
                             i.putExtra("name", name);
                             i.putExtra("role", role);

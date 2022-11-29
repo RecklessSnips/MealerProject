@@ -53,31 +53,42 @@ public class MealStatus extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                requestList.clear();
 //                statusList.clear();
+//                System.out.println(clientID);
                 List<Map<String, String>> list = new LinkedList<>();
+
                 for(DataSnapshot child : snapshot.getChildren()){
 //                    System.out.println(child);
-                    Request request = child.getValue(Request.class);
-                    request.setStatus((String) child.child("status").getValue());
-                    request.setId(child.getKey());
+//                    System.out.println(child(clientID));
+//                    System.out.println((String) snapshot.child(clientID).getKey());
+//                    System.out.println(snapshot);
+//                    System.out.println(child);
+//                    System.out.println(child.child("clientId").getValue());
+                    if(child.child("clientId").getValue().equals(clientID)) {
+                        Request request = child.getValue(Request.class);
+                        request.setStatus((String) child.child("status").getValue());
+                        request.setId(child.getKey());
 //                    requestList.add(request);
 
 
-                    Map<String, String> map = new HashMap<>();
+                        Map<String, String> map = new HashMap<>();
 //                    System.out.println(request.getMealName());
 //                    System.out.println(request.getStatus());
-                    map.put("mealName", request.getMealName());
-                    map.put("status", request.getStatus());
-                    map.put("requestID", request.getId());
+                        map.put("mealName", request.getMealName());
+                        map.put("status", request.getStatus());
+                        map.put("requestID", request.getId());
 //                    currentStatus = request.getStatus();
 //                    statusList.add(currentStatus);
 //                    status.setText(currentStatus);
-                    list.add(map);
+                        list.add(map);
+                        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), list, R.layout.status_list_view,
+                                new String[] {"mealName", "status", "requestID"},
+                                new int[] {R.id.m_name, R.id.status, R.id.request_ID});
+                        status_view.setAdapter(adapter);
+                    }
                 }
 
-                SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), list, R.layout.status_list_view,
-                        new String[] {"mealName", "status", "requestID"},
-                        new int[] {R.id.m_name, R.id.status, R.id.request_ID});
-                status_view.setAdapter(adapter);
+//                for(DataSnapshot)
+
             }
 
             @Override
