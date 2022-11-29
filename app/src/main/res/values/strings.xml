@@ -52,4 +52,8 @@
     <string name="logInCookID">TextView</string>
     <string name="suspend_date_hint">Suspend date?</string>
     <string name="ratingBar">rating</string>
+    <string name="you_have_signed_in_as_a">you have signed in as a</string>
+    <string name="ordered">ordered</string>
+    <string name="order">order</string>
+    <string name="welcome">Welcome,</string>
 </resources>

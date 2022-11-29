@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.mealer.Accounts.Account;
 
 public class WelcomeMenu extends AppCompatActivity {
-    private TextView welcomeMenu_msg;
+    private TextView welcomeMenu_msg, textRole;
     private String name, role, id;
     private Button order, ordered;
 
@@ -23,6 +23,7 @@ public class WelcomeMenu extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_menu);
 
         welcomeMenu_msg = findViewById(R.id.welcomeMenu_msg);
+        textRole=findViewById(R.id.textRole);
         order = findViewById(R.id.order);
         ordered = findViewById(R.id.ordered);
 
@@ -31,8 +32,8 @@ public class WelcomeMenu extends AppCompatActivity {
         role = i.getStringExtra("role");
         id = i.getStringExtra("ClientID");
 
-        welcomeMenu_msg.setText("Welcome " + name + ", you have signed in as a "
-                + role + "!");
+        welcomeMenu_msg.setText( name + ",");
+        textRole.setText (role+"!");
 
         order.setOnClickListener(new View.OnClickListener() {
             @Override
