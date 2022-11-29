@@ -14,7 +14,7 @@ public class AdminActivity extends AppCompatActivity {
     private String name;
     private String role;
 
-    private Button checkComplaintsBTN;
+    private Button checkComplaintsBTN, logOff;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,6 +22,7 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        logOff=findViewById(R.id.logOff);
         adminWelcomeMsg = findViewById(R.id.adminWelcomeMsg);
         checkComplaintsBTN = findViewById(R.id.checkComplaintsBTN);
 
@@ -38,5 +39,13 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        logOff.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            }
+        }));
+
     }
 }
