@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Evaluation extends AppCompatActivity {
     private RatingBar ratingBar;
     private EditText complaints;
-    private Button sendComplaints;
+    private Button sendComplaints, logoff;
     private String complaint;
     private String requestID;
     private String clientID, cookID, rating;
@@ -43,6 +43,7 @@ public class Evaluation extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         complaints = findViewById(R.id.com);
         sendComplaints = findViewById(R.id.sendComplaints);
+        logoff = findViewById(R.id.logoff);
 
         requestReference = FirebaseDatabase.getInstance().getReference("Request/" + requestID);
         complaintReference = FirebaseDatabase.getInstance().getReference("Complaints");
@@ -98,6 +99,15 @@ public class Evaluation extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }
+            }
+        });
+
+        logoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged off!", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
     }

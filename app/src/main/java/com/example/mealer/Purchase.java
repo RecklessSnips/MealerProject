@@ -28,7 +28,7 @@ public class Purchase extends AppCompatActivity {
     private String mealName, cookID, mealID, clientID;
     private String cookName, address, description, pickUpDate;
     private String mealPrice, mealType, mealCuisine, mealIngredients, mealAllergrens, mealDescription;
-    private Button purchase;
+    private Button purchase, logoff_2;
     private EditText pick;
 
 
@@ -69,6 +69,7 @@ public class Purchase extends AppCompatActivity {
         iD.setText(mealID);
 
         purchase = findViewById(R.id.purchase);
+        logoff_2 = findViewById(R.id.logoff_2);
 
         requestReference = FirebaseDatabase.getInstance().getReference("Request");
         cookReference = FirebaseDatabase.getInstance().getReference("Cooks/" + cookID);
@@ -172,6 +173,15 @@ public class Purchase extends AppCompatActivity {
                     toast.show();
                     finish();
                 }
+            }
+        });
+
+        logoff_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged off!", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
     }

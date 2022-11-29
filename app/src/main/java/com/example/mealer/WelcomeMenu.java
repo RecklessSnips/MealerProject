@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mealer.Accounts.Account;
 
 public class WelcomeMenu extends AppCompatActivity {
     private TextView welcomeMenu_msg, textRole;
     private String name, role, id;
-    private Button order, ordered;
+    private Button order, ordered, logoff_1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,6 +27,7 @@ public class WelcomeMenu extends AppCompatActivity {
         textRole=findViewById(R.id.textRole);
         order = findViewById(R.id.order);
         ordered = findViewById(R.id.ordered);
+        logoff_1 = findViewById(R.id.logoff_1);
 
         Intent i = getIntent();
         name = i.getStringExtra("name");
@@ -50,6 +52,15 @@ public class WelcomeMenu extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MealStatus.class);
                 intent.putExtra("client_id", id);
                 startActivity(intent);
+            }
+        });
+
+        logoff_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Logged off!", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
     }
