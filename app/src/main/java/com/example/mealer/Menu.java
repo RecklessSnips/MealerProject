@@ -67,14 +67,22 @@ public class Menu extends AppCompatActivity {
                     map.put("meal_name", m.getMealName());
                     map.put("meal_type", m.getMealType());
                     map.put("cuisine_type", m.getCuisineType());
+
+                    map.put("meal_price", m.getPrice());
+                    map.put("meal_ingredients", m.getIngredients());
+                    map.put("meal_allergens", m.getAllergens());
+                    map.put("meal_description", m.getDescription());
                     list.add(map);
                 }
                 // test
 //                System.out.println(mealList);
                 // send to the listView
                 SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), list,
-                        R.layout.meal_list_view, new String[]{"meal_id", "meal_name", "meal_type", "cuisine_type"},
-                        new int[]{R.id.m__id, R.id.m__name, R.id.m__type, R.id.cuisine__type});
+                        R.layout.meal_list_view,
+                        new String[]{"meal_id", "meal_name", "meal_type", "cuisine_type",
+                                "meal_price", "meal_ingredients", "meal_allergens", "meal_description"},
+                        new int[]{R.id.m__id, R.id.m__name, R.id.m__type, R.id.cuisine__type,
+                        R.id.meal_price, R.id.meal_ingredients, R.id.meal_allergens, R.id.meal_description});
                 menu.setAdapter(adapter);
             }
 
@@ -93,11 +101,22 @@ public class Menu extends AppCompatActivity {
                 TextView mealType = view.findViewById(R.id.m__type);
                 TextView cuisineType = view.findViewById(R.id.cuisine__type);
 
+                TextView mealPrice = view.findViewById(R.id.meal_price);
+                TextView mealIngredients = view.findViewById(R.id.meal_ingredients);
+                TextView mealAllergens = view.findViewById(R.id.meal_allergens);
+                TextView mealDescription = view.findViewById(R.id.meal_description);
+
                 Intent intent1 = new Intent(getApplicationContext(), MenuItem.class);
                 intent1.putExtra("meal-ID", mealID.getText().toString());
                 intent1.putExtra("meal-Name", meal.getText().toString());
                 intent1.putExtra("meal-Type", mealType.getText().toString());
                 intent1.putExtra("cuisine-Type", cuisineType.getText().toString());
+
+                intent1.putExtra("meal-Price", mealPrice.getText().toString());
+                intent1.putExtra("meal-Ingredients", mealIngredients.getText().toString());
+                intent1.putExtra("meal-Allergens", mealAllergens.getText().toString());
+                intent1.putExtra("meal-Description", mealDescription.getText().toString());
+
                 intent1.putExtra("cook-ID", cookID);
                 startActivity(intent1);
             }

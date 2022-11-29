@@ -6,6 +6,7 @@ public class Cook extends Account{
     private String description;
     // attributes to determine whether this cook is active
     private String isActive = "active";
+    private String numberSold;
 
     // to avoid JAVA reflection issues
     public Cook() {
@@ -13,6 +14,7 @@ public class Cook extends Account{
 
     public Cook(String firstName, String lastName, String email, String pwd, String address, String voidCheque, String description) {
         super(firstName, lastName, email, pwd, address);
+//        this.numberSold = numberSold;
         this.voidCheque = voidCheque;
         this.description = description;
     }
@@ -39,6 +41,14 @@ public class Cook extends Account{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNumberSold() {
+        return numberSold;
+    }
+
+    public void setNumberSold(String numberSold) {
+        this.numberSold = numberSold;
     }
 
     @Override

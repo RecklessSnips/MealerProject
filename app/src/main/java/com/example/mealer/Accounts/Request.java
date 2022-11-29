@@ -2,17 +2,29 @@ package com.example.mealer.Accounts;
 
 public class Request {
     private String id;
-    private String clientId;
+    private String clientId, cookID;
     private String mealName;
     private String status;
+    private String pickUpTime;
+
 
     public Request() {
     }
 
-    public Request(String clientId, String mealName, String status) {
+    public Request(String clientId, String cookID, String mealName, String status, String pickUpTime) {
         this.clientId = clientId;
+        this.cookID = cookID;
         this.mealName = mealName;
         this.status = status;
+        this.pickUpTime = pickUpTime;
+    }
+
+    public String getPickUpTime() {
+        return pickUpTime;
+    }
+
+    public void setPickUpTime(String pickUpTime) {
+        this.pickUpTime = pickUpTime;
     }
 
     public String getId() {
@@ -45,5 +57,13 @@ public class Request {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCookID() {
+        return cookID;
+    }
+
+    public void setCookID(String cookID) {
+        this.cookID = cookID;
     }
 }

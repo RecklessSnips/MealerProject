@@ -225,6 +225,7 @@ public class RegisterCook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(ifInputsAreValid()){
+//                    String n = "0";
                     Account account = new Cook(fst, lst, eml,
                             pwd, add, cheque, description);
                     // now add accounts into the firebase by call the method push() and getKey() and setValue()

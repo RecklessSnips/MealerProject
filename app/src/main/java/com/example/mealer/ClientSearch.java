@@ -28,7 +28,7 @@ import java.util.Objects;
 public class ClientSearch extends AppCompatActivity {
     private DatabaseReference offerReference;
     private SearchView searchView;
-    private ListView menu;
+    private ListView listView;
     private List<Meal> offer;
     private String id;
 //    SimpleAdapter adapter;
@@ -43,7 +43,7 @@ public class ClientSearch extends AppCompatActivity {
         id = intent.getStringExtra("client_id");
 
         searchView = (SearchView) findViewById(R.id.searchView);
-        menu = findViewById(R.id.search_listView);
+        listView = findViewById(R.id.list);
         offer = new LinkedList<>();
 
 //        offerReference = FirebaseDatabase.getInstance().getReference("Offer/-NGyYwaZr9B9ZxNRIW2e");
@@ -61,10 +61,11 @@ public class ClientSearch extends AppCompatActivity {
                         Objects.requireNonNull(meal).setMealID(c.getKey());
                         offer.add(meal);
 
+                        // This allow user to search either in name, cuisine, or type
                         map.put("mealID", meal.getMealID());
                         map.put("mealName", meal.getMealName());
-//                        map.put("mealType", meal.getMealType());
-//                        map.put("cuisineType", meal.getCuisineType());
+                        map.put("mealType", meal.getMealType());
+                        map.put("cuisineType", meal.getCuisineType());
                         map.put("cookID", meal.getCookID());
                         list.add(map);
                     }
@@ -75,11 +76,11 @@ public class ClientSearch extends AppCompatActivity {
                         new String[]{"mealName", "cookID", "mealID", "mealType", "cuisineType"},
                         new int[]{R.id.name, R.id.id, R.id.mealid, R.id.mealtype, R.id.cuisinetype});
 
-                SimpleAdapter adapter1 = new SimpleAdapter(getApplicationContext(), list, R.layout.client_search_view,
-                        new String[]{"mealName", "cookID"},
-                        new int[]{R.id.name, R.id.id});
-//                listView.setAdapter(adapter);
-                menu.setAdapter(adapter1);
+//                SimpleAdapter adapter1 = new SimpleAdapter(getApplicationContext(), list, R.layout.client_search_view,
+//                        new String[]{"mealName", "cookID"},
+//                        new int[]{R.id.name, R.id.id});
+                listView.setAdapter(adapter);
+//                listView.setAdapter(adapter1);
 
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
@@ -107,7 +108,7 @@ public class ClientSearch extends AppCompatActivity {
             }
         });
 
-        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView meal = view.findViewById(R.id.name);

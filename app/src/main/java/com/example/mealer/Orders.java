@@ -55,6 +55,8 @@ public class Orders extends AppCompatActivity {
                     map.put("mealName", request.getMealName());
                     map.put("requestID", request.getId());
 
+//                    System.out.println(request.getId());
+
                     list.add(map);
                 }
 
@@ -71,7 +73,7 @@ public class Orders extends AppCompatActivity {
 
                         food = view.findViewById(R.id.meal);
                         cli = view.findViewById(R.id.client);
-                        reID = findViewById(R.id.requestID);
+                        reID = view.findViewById(R.id.requestID);
 
                         foodName = food.getText().toString();
                         clientId = cli.getText().toString();

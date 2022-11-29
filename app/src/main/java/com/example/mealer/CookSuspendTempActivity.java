@@ -49,6 +49,7 @@ public class CookSuspendTempActivity extends AppCompatActivity {
         logInID = i.getStringExtra("CookID");
         System.out.println(logInID);
 //        System.out.println(logInID);
+
         suspendedAccounts.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

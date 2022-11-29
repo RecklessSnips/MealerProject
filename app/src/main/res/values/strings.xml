@@ -51,4 +51,5 @@
     <string name="suspendCookID">TextView</string>
     <string name="logInCookID">TextView</string>
     <string name="suspend_date_hint">Suspend date?</string>
+    <string name="ratingBar">rating</string>
 </resources>

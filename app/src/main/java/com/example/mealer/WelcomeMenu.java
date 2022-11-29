@@ -14,7 +14,7 @@ import com.example.mealer.Accounts.Account;
 public class WelcomeMenu extends AppCompatActivity {
     private TextView welcomeMenu_msg;
     private String name, role, id;
-    private Button order;
+    private Button order, ordered;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,6 +24,7 @@ public class WelcomeMenu extends AppCompatActivity {
 
         welcomeMenu_msg = findViewById(R.id.welcomeMenu_msg);
         order = findViewById(R.id.order);
+        ordered = findViewById(R.id.ordered);
 
         Intent i = getIntent();
         name = i.getStringExtra("name");
@@ -37,6 +38,15 @@ public class WelcomeMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ClientSearch.class);
+                intent.putExtra("client_id", id);
+                startActivity(intent);
+            }
+        });
+
+        ordered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MealStatus.class);
                 intent.putExtra("client_id", id);
                 startActivity(intent);
             }

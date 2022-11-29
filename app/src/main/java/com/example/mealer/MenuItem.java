@@ -23,10 +23,12 @@ import java.util.List;
 
 public class MenuItem extends AppCompatActivity {
     private TextView meal_id, meal_name, meal_type, cuisine_type;
+    private TextView meal_price, meal_ingredients, meal_allergens, meal_description;
     private String id;
     private String name;
     private String cook_id;
     private String mealType, cuisineType;
+    private String mealPrice, mealIngredients, mealAllergens, mealDescription;
     private Button offer, delete;
 
     // in this class we can add meal to the offer menu
@@ -50,10 +52,21 @@ public class MenuItem extends AppCompatActivity {
         mealType = intent.getStringExtra("meal-Type");
         cuisineType = intent.getStringExtra("cuisine-Type");
 
+
+        mealPrice = intent.getStringExtra("meal-Price");
+        mealIngredients = intent.getStringExtra("meal-Ingredients");
+        mealAllergens = intent.getStringExtra("meal-Allergens");
+        mealDescription = intent.getStringExtra("meal-Description");
+
         meal_id = findViewById(R.id.m__id);
         meal_name = findViewById(R.id.m__name);
         meal_type = findViewById(R.id.m__type);
         cuisine_type = findViewById(R.id.cuisine__type);
+
+        meal_price = findViewById(R.id.meal_price);
+        meal_ingredients = findViewById(R.id.meal_ingredients);
+        meal_allergens = findViewById(R.id.meal_allergens);
+        meal_description = findViewById(R.id.meal_description);
 
         offer = findViewById(R.id.offer);
         delete  = findViewById(R.id.delete);
@@ -62,6 +75,11 @@ public class MenuItem extends AppCompatActivity {
         meal_name.setText(name);
         meal_type.setText(mealType);
         cuisine_type.setText(cuisineType);
+
+        meal_price.setText(mealPrice);
+        meal_ingredients.setText(mealIngredients);
+        meal_allergens.setText(mealAllergens);
+        meal_description.setText(mealDescription);
 
         // locate the data base path we want to put the data
         offerReference = FirebaseDatabase.getInstance().getReference("Offer/" + cook_id);
@@ -96,7 +114,8 @@ public class MenuItem extends AppCompatActivity {
 //                System.out.println(name);             Just for testing
 //                System.out.println(cook_id);          Just for testing
 //                System.out.println(id);               //Just for testing
-                Meal meal = new Meal(name, mealType, cuisineType, cook_id);
+                Meal meal = new Meal(cook_id,  name,  mealType,  cuisineType,
+                        mealIngredients,  mealAllergens,  mealPrice, mealDescription);
                 offerReference.child(id).setValue(meal);
 //                System.out.println(offeredMeal);
                 //Just for testing
