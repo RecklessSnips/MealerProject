@@ -74,6 +74,8 @@ public class Complaints extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 complaints.clear();
+                System.out.println(cookID);
+                System.out.println(complaintID);
                 for (DataSnapshot child : snapshot.getChildren()) {
                     // get all the Complaints from the database
                     ClientComplaints complaint = child.getValue(ClientComplaints.class);
@@ -121,7 +123,9 @@ public class Complaints extends AppCompatActivity {
         suspendTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cookReference.child(cookID).child("isActive").setValue("Suspend temporarily");
+//                crucial!!!
+//                and only access one child!!!
+                cookReference.child(complaintID).child("isActive").setValue("Suspend temporarily");
                 Intent i = new Intent(getApplicationContext(), SuspendTime.class);
                 // crucial step, in order to let the admin suspend a SPECIFIC
                 // cook, need to transfer this cookID into the SuspendTime.java file
