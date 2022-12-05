@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 import com.example.mealer.Accounts.Client;
 import com.example.mealer.Accounts.Cook;
 import com.example.mealer.Accounts.Meal;
+import com.example.mealer.Accounts.Request;
+import com.example.mealer.Accounts.SuspendAccounts;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -16,10 +18,10 @@ import com.example.mealer.Accounts.Meal;
  */
 public class ExampleUnitTest {
     @Test
-    public void checkCookStatus_0() {
-        Cook cook = new Cook("Anakin", "SkyWalker", "Sand", "501", "Courscant", "Cheque123", "The chosen one");
-        cook.setIsActive("Suspend temporarily");
-        assertEquals("Check if the Cook status is banned", "Suspend temporarily", cook.getIsActive());
+    public void checkSuspendAccounts() {
+        SuspendAccounts suspendAccount = new SuspendAccounts("Tomorrow", "321");
+        assertEquals("Check if the suspendAccount" +
+                " date", "Tomorrow", suspendAccount.getSuspendDate());
     }
 
     @Test
@@ -29,14 +31,14 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void checkClientName() {
-        Client client = new Client("Shuai", "Gao", "cgao034@uottawa.ca", "123", "London686", "1314520");
-        assertEquals("Check if the client's address is correct", "London686", client.getAddress());
+    public void checkRequestStatus() {
+        Request request = new Request("123", "321", "Burger", "pending", "Tomorrow");
+        assertEquals("Check if the request's status is correct", "pending", request.getStatus());
     }
 
     @Test
-    public void checkMealCookID() {
+    public void checkCuisineType() {
         Meal meal = new Meal("Burger", "fast food", "Western", "Cook1");
-        assertEquals("Check if the meal matches the cook id", "Cook1", meal.getCookID());
+        assertEquals("Check if the cuisine correct", "Western", meal.getCuisineType());
     }
 }

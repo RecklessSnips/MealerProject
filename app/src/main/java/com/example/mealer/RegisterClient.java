@@ -73,6 +73,8 @@ public class RegisterClient extends AppCompatActivity {
 
         clientAccounts = new LinkedList<>();
         // extract the data from the database
+//        DatabaseReference userReference;
+//        userReference = FirebaseDatabase.getInstance().getReference();
         clientReference = FirebaseDatabase.getInstance().getReference("Clients");
 
         // listen for new change in Clients
