@@ -1,5 +1,6 @@
 package com.example.mealer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,12 +11,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CookActivity extends AppCompatActivity {
-    private TextView cookWelcomeMsg;
+    private TextView cookWelcomeMsg, cook_Name;
     private Button mealMenu, offerMenu, addMeal, orders, profile, logoff_3;
-    private String name;
+    private String name, firstName;
     private String role;
     private String cookID;
+    private DatabaseReference cook;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -24,6 +32,9 @@ public class CookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cook);
 
         cookWelcomeMsg = findViewById(R.id.cookWelcomeMsg);
+        cook_Name = findViewById(R.id.cook_Name);
+
+        cook = FirebaseDatabase.getInstance().getReference("Cooks");
 
         mealMenu = findViewById(R.id.mealMenu);
         offerMenu = findViewById(R.id.offerMenu);
@@ -38,8 +49,34 @@ public class CookActivity extends AppCompatActivity {
         cookID = i.getStringExtra("CookID");
 //        System.out.println(name);
 //        System.out.println(role);
-        cookWelcomeMsg.setText("Welcome " + name + ", you have signed in as a "
+
+        cook.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child : snapshot.getChildren()){
+//                    System.out.println(child.child("firstName"));
+                    System.out.println(child.getKey());
+                    if(child.getKey().equals(cookID)){
+                        firstName = (String)child.child("firstName").getValue();
+//                        System.out.println(firstName);
+                        cook_Name.setText("Hello" + firstName + "!");
+                    }
+                }
+//                System.out.println(cookID);
+//                System.out.println(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        System.out.println(firstName);
+
+        updateTextView("you have signed in as a "
                 + role + "!");
+//        cookWelcomeMsg.setText("Welcome " + name + ", you have signed in as a "
+//                + role + "!");
 
         // we need to pass the cookID and the cook name to the
         // following class whatsoever

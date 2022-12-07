@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AdminActivity extends AppCompatActivity {
     private TextView adminWelcomeMsg;
     private String name;
     private String role;
+    private DatabaseReference admin;
 
     private Button checkComplaintsBTN, logOff;
 
@@ -25,6 +29,8 @@ public class AdminActivity extends AppCompatActivity {
         logOff=findViewById(R.id.logOff);
         adminWelcomeMsg = findViewById(R.id.adminWelcomeMsg);
         checkComplaintsBTN = findViewById(R.id.checkComplaintsBTN);
+
+        admin = FirebaseDatabase.getInstance().getReference("admin");
 
         Intent i = getIntent();
         name = i.getStringExtra("name");
